@@ -4,6 +4,7 @@ import image from "../assets/spacelivery.png";
 import { LiaSpaceShuttleSolid } from "react-icons/lia";
 import { SiAlienware } from "react-icons/si";
 import { GrUserManager } from "react-icons/gr";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export const EditAddress = () => {
   const [planet, setPlanet] = useState("Terra");
@@ -20,6 +21,7 @@ export const EditAddress = () => {
     services: [],
     terms: false,
   });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,16 +29,6 @@ export const EditAddress = () => {
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
-
-  const handleServiceChange = (e) => {
-    const { value, checked } = e.target;
-    setAddress((prevState) => {
-      const services = checked
-        ? [...prevState.services, value]
-        : prevState.services.filter((service) => service !== value);
-      return { ...prevState, services };
-    });
   };
 
   const handlePlanetChange = (event) => {
@@ -48,15 +40,22 @@ export const EditAddress = () => {
     console.log("Endereço editado:", address);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="container">
       <header className="header">
-      <h1>
+        <h1>
           SpaceLivery
           <LiaSpaceShuttleSolid style={{ marginLeft: 10 }} />
         </h1>
         <nav>
-          <ul>
+          <button className="menu-icon" onClick={toggleMenu}>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+          <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
             <li>
               <a href="/">Home</a>
             </li>

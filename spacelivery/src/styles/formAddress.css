@@ -1,5 +1,4 @@
 body {
-  /* font-family: "Arial", sans-serif; */
   font-family: "Sulphur Point", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -27,56 +26,85 @@ body {
 .header h1 {
   margin: 0;
   font-size: 24px;
-
   display: flex;
   align-items: center;
+  text-align: center;
+}
+
+.header nav {
+  position: relative;
+}
+
+.menu-icon {
+  color: #f0f0f0;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
 }
 
 .header nav ul {
   list-style: none;
-  display: flex;
-  gap: 20px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
   padding: 0;
   margin: 0;
+  text-align: center;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  left: -94%;
+  right: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header nav ul li {
-  margin: 0;
+  padding: 10px 0;
 }
 
 .header nav ul li a {
   text-decoration: none;
-  /* color: #333; */
   color: #f0f0f0;
+}
+
+.nav-links.open {
+  padding: 5px;
+  display: flex;
+  background-color: #282c34;
+  width: 70px;
 }
 
 .main-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
 .form-section {
-  flex: 1;
-  margin-right: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .form-section h2 {
   font-size: 28px;
-}
-
-.form-section p {
-  color: #666;
+  text-align: center;
 }
 
 .form-section form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .form-section form label {
+  width: 100%;
   margin-bottom: 15px;
-  max-width: 90%;
+  max-width: 500px;
 }
 
 .form-section form input,
@@ -89,38 +117,73 @@ body {
   border-radius: 4px;
 }
 
-.form-section form textarea {
-  resize: vertical;
-}
-
-.checkbox-group {
-  margin-bottom: 20px;
-}
-
-.checkbox-group p {
-  margin: 0 0 10px 0;
-}
-
-.checkbox-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
 .form-section form button {
-  width: 95%;
+  width: 100%;
   padding: 15px;
   border: none;
   background-color: #000;
   color: #fff;
   cursor: pointer;
   border-radius: 4px;
+  max-width: 500px;
 }
 
 .image-section {
-  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .image-section img {
   max-width: 100%;
   border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .header nav ul {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    background: none;
+    box-shadow: none;
+  }
+
+  .header nav ul li {
+    padding: 0;
+  }
+
+  .main-content {
+    flex-direction: row;
+  }
+
+  .form-section,
+  .image-section {
+    flex: 1;
+    margin: 0 20px;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-section form label {
+    max-width: 90%;
+  }
+
+  .form-section form button {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 767px) {
+  .image-section {
+    display: none;
+  }
 }

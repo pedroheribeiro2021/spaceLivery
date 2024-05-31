@@ -4,12 +4,18 @@ import image from "../assets/spacelivery.png";
 import { LiaSpaceShuttleSolid } from "react-icons/lia";
 import { SiAlienware } from "react-icons/si";
 import { GrUserManager } from "react-icons/gr";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export const RegisterAddress = () => {
   const [planet, setPlanet] = useState("Terra");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handlePlanetChange = (event) => {
     setPlanet(event.target.value);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -20,7 +26,10 @@ export const RegisterAddress = () => {
           <LiaSpaceShuttleSolid style={{ marginLeft: 10 }} />
         </h1>
         <nav>
-          <ul>
+          <button className="menu-icon" onClick={toggleMenu}>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+          <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
             <li>
               <a href="/">Home</a>
             </li>
@@ -81,10 +90,6 @@ export const RegisterAddress = () => {
 
             {planet === "Terra" && (
               <>
-                {/* <label>
-                  País
-                  <input type="text" placeholder="Seu país" />
-                </label> */}
                 <label>
                   Cidade
                   <input type="text" placeholder="Sua cidade" />
